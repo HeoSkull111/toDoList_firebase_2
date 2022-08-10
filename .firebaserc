@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "notetest-2ccbd": {
+      "hosting": {
+        "toDoList_firebase_3": [
+          "notetest-2ccbd"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "notetest-2ccbd"
+  }
+}

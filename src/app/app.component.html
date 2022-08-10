@@ -1,0 +1,62 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Background animation</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
+</head>
+
+<body>
+  <div class="text-container">
+    <h1>Note Online</h1>
+  </div>
+</body>
+<div class="parent" >
+    <div class="section yellow">
+        <div class="card">  
+            <div>
+                <input class="input" type="text" placeholder="Title" name="title" [(ngModel)]="currentCard.title">
+            </div>
+            <div>
+                <input class="input" placeholder="Content" name="description" [(ngModel)]="currentCard.description">
+            </div>
+            <button class="button" (click)="addToDo()">Add</button>
+        </div>
+    </div>
+    <div class="verticalLine">
+        <div class="section purple">
+            <div class="card" *ngFor="let task of task$ | async">
+                <div *ngIf="!task.status; else elseBlock">
+                    <div class="title">{{ task.title }}</div>
+                    <div class = "date"> {{ task.dateCreated }}</div>
+                    <p class="description">
+                        {{ task.description }}
+                    </p>
+                    <div class="button-container">
+                        <button class="button left" (click)="deleteToDo(task.id)">Delete</button>
+                        <button class="button right" (click)="update(task)">Update</button>
+                    </div>
+                </div>
+        
+                <ng-template #elseBlock>
+                    <div>
+                        <div class="card">  
+                            <div>
+                                <input class="input" type="text" placeholder="Update Title" name="title" [(ngModel)]="updateCard.title">
+                            </div>
+                            <div>
+                                <input class="input" placeholder="Update Description" name="description" [(ngModel)]="updateCard.description"> 
+                            </div>
+                            <button class="button" (click)="addToDoAfterUpdate(task)">Update</button>
+                        </div>         
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+<body>
+    <div class="text-container">
+      <h1>Note Online</h1>
+    </div>
+</body>
