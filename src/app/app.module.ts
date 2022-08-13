@@ -17,6 +17,8 @@ import { ToDoEffect } from 'src/effects/note.effect';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToDoService } from './services/note.service';
+import { AuthReducer } from 'src/reducers/auth.reducer';
+import { AuthEffects } from 'src/effects/auth.effect';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,11 @@ import { ToDoService } from './services/note.service';
     AppRoutingModule,
     StoreModule.forRoot({
       toDo: ToDoReducer,
+      auth: AuthReducer
     }, {}),
     EffectsModule.forRoot([
-      ToDoEffect
+      ToDoEffect,
+      AuthEffects
     ]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
@@ -38,7 +42,7 @@ import { ToDoService } from './services/note.service';
     provideMessaging(() => getMessaging()),
     provideStorage(() => getStorage()),
     CommonModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     ScreenTrackingService,UserTrackingService, ToDoService

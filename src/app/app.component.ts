@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as ToDoActions from 'src/actions/note.actions';
 import { Observable } from 'rxjs';
+import { AuthState } from 'src/states/auth.state';
+import * as AuthActions from 'src/actions/auth.action';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,6 +13,9 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = 'toDoList_firebase_3';
+
+  idToken$ = this.store.select((state)=>state.auth.idToken);
+
   updateCard: ToDo = {
     id: '',
     title: '',
@@ -28,7 +33,7 @@ export class AppComponent {
   };
   toDoState$: Observable<ToDoState> = this.store.select('toDo');
   task$ = this.store.select(state => state.toDo.toDos);
-  constructor(private store: Store<{toDo: ToDoState}>) { }
+  constructor(private store: Store<{toDo: ToDoState,auth: AuthState}>) { }
   
   ngOnInit(): void {
     this.toDoState$.subscribe(state => {
@@ -80,5 +85,13 @@ export class AppComponent {
     task.id = Date.now().toString();
     task.dateCreated = new Date(Date.now()).toUTCString();
     this.store.dispatch(ToDoActions.updateToDo({task: task}));
+  }
+
+  login() {
+    this.store.dispatch(AuthActions.login());
+  }
+
+  logOut() {
+    this.store.dispatch(AuthActions.logOut());
   }
 }

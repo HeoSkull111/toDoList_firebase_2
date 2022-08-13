@@ -8,8 +8,14 @@
 
 <body>
   <div class="text-container">
-    <h1>Note Online</h1>
-  </div>
+    <h1 style="margin-left: 1%">Note Online</h1>
+    <div style="margin-right: 1%">
+        <button (click)="login()" *ngIf="!(idToken$ | async) as idToken; else elseBlock" class="button-45">Login with Google</button>
+    <ng-template #elseBlock>
+        <button (click)="logOut()" class="button-45">Logout</button>
+    </ng-template>
+    </div>
+</div>
 </body>
 <div class="parent" >
     <div class="section yellow">
@@ -22,6 +28,7 @@
             </div>
             <button class="button" (click)="addToDo()">Add</button>
         </div>
+        {{idToken$ | async}}
     </div>
     <div class="verticalLine">
         <div class="section purple">
@@ -57,6 +64,6 @@
 </div>
 <body>
     <div class="text-container">
-      <h1>Note Online</h1>
+      <h1 style="margin-left: 1%">Note Online</h1>
     </div>
 </body>

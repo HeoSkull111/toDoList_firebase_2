@@ -1,7 +1,6 @@
 import { ToDo } from 'src/models/note.model';
 import { createAction, props } from "@ngrx/store";
 
-
 export const addToDo = createAction(
     '[Todo] Add',
     props<{ task: ToDo }>()
