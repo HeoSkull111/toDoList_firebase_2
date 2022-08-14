@@ -22,4 +22,7 @@ export class AuthService {
       }
     });
   }
+  logout() {
+    this.auth.signOut();
+  }
 }

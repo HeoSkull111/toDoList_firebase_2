@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { collection, collectionSnapshots, deleteDoc, doc, Firestore, getDocs, setDoc } from "@angular/fire/firestore";
+import { map } from 'rxjs';
 import { ToDo } from 'src/models/note.model';
 
 @Injectable({
@@ -27,5 +28,9 @@ export class ToDoService {
   updateTask(toDo: ToDo) {
     return setDoc(doc(this.db, 'todos/' + toDo.id), toDo);
   }
-  
+
+  // async searchByID(q: string) {
+  //   const notes = collectionSnapshots(collection(this.db, 'todos'));
+  //   return notes.pipe(map(notes => notes.filter(note => note['title'].includes(q))));    
+  // }
 }
